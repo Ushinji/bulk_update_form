@@ -1,0 +1,43 @@
+<% provide(:title, 'Bulk Update Form') %>
+
+<h1>User Bulk Update Form</h1>
+<div>
+  <%= form_with(model: @form, url: users_bulk_update_path, method: :put) do |f| %>
+    <table>
+      <thead>
+        <tr>
+          <th>CreatedAt</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>IsActive</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.fields_for :users do |user| %>
+          <tr>
+            <td>
+              <%= user.object.created_at.strftime("%F %T") %>
+            </td>
+            <td>
+              <%= user.object.name %>
+            </td>
+            <td>
+              <%= user.object.age %>
+            </td>
+            <td>
+              <div style="display: flex;">
+                <%= user.radio_button :is_active, true, checked: user.object.is_active %> 
+                <%= label :is_active, "Active", for: "user_bulk_update_form_users_attributes_#{user.index}_is_active_true" %>
+              </div>
+              <div style="display: flex;">
+                <%= user.radio_button :is_active, false, checked: !user.object.is_active %> 
+                <%= label :is_active, "InActive", for: "user_bulk_update_form_users_attributes_#{user.index}_is_active_false" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= f.submit 'Update' %>
+  <% end %>
+</div>
