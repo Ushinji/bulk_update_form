@@ -9,6 +9,10 @@ class UserBulkUpdateForm
     self.users = User.all unless self.users
   end
 
+  def save!
+    User.transaction { self.users.each(&:save!) }
+  end
+
   def users_attributes=(attributes)
     # MEMO: params = {"0"=>{"is_active"=>"true", "id"=>"1"}, "1"=> { ... }, ...
     users = User.where(id: attributes.values.map { |user_attributes| user_attributes[:id].to_i })
