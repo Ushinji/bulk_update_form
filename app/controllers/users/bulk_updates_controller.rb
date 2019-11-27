@@ -2,7 +2,7 @@
 
 class Users::BulkUpdatesController < ApplicationController
   def index
-    @form = UserBulkUpdateForm.new()
+    @form = UserBulkUpdateForm.new
   end
 
   def update
