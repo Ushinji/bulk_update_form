@@ -16,8 +16,8 @@ class UserBulkUpdateForm
   def users_attributes=(attributes)
     # MEMO: params = {"0"=>{"is_active"=>"true", "id"=>"1"}, "1"=> { ... }, ...
     users = User.where(id: attributes.values.map { |user_attributes| user_attributes[:id].to_i })
-    self.users = attributes.values.map do |user_attributes|
-      user = users.find { |user| user.id == user_attributes[:id].to_i }
+    self.users = users.map do |user|
+      user_attributes = attributes.values.find { |user_attributes| user.id == user_attributes[:id].to_i }
       user.is_active = user_attributes[:is_active]
       user
     end
