@@ -8,6 +8,7 @@ class Users::BulkUpdatesController < ApplicationController
 
   def confirm
     @form = UserBulkUpdateForm.new(form_params)
+    return render "users/bulk_updates/index" unless @form.valid?
   end
 
   def update

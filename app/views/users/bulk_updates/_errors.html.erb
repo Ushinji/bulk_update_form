@@ -1,0 +1,16 @@
+<% if form.users.any? { |user| user.errors.present? } %>
+  <div>
+    <% form.users.each.with_index(1) do |user, idx| %>
+      <% if user.errors.present? %>
+        <ul>
+            <li><%= "No.#{idx} user is invalid." %></li>
+            <ul>
+                <% user.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+                <% end %>
+            </ul>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

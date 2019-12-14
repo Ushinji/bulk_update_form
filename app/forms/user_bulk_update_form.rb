@@ -8,6 +8,10 @@ class UserBulkUpdateForm
     super(attributes)
   end
 
+  def valid?
+    self.users.map(&:valid?).all?
+  end
+
   def save!
     User.transaction do
       User.upsert_all(self.users.map { |user| user.attributes })
