@@ -6,6 +6,10 @@ class Users::BulkUpdatesController < ApplicationController
     @form.users = User.all
   end
 
+  def confirm
+    @form = UserBulkUpdateForm.new(form_params)
+  end
+
   def update
     @form = UserBulkUpdateForm.new(form_params)
     @form.save!
