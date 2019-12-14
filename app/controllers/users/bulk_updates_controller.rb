@@ -3,6 +3,7 @@
 class Users::BulkUpdatesController < ApplicationController
   def index
     @form = UserBulkUpdateForm.new
+    @form.users = User.all
   end
 
   def update

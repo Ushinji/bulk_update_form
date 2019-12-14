@@ -6,7 +6,6 @@ class UserBulkUpdateForm
 
   def initialize(attributes = {})
     super(attributes)
-    self.users = User.all unless self.users
   end
 
   def save!
