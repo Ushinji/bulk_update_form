@@ -9,7 +9,9 @@ class UserBulkUpdateForm
   end
 
   def save!
-    User.transaction { self.users.each(&:save!) }
+    User.transaction do
+      User.upsert_all(self.users.map{ |user| user.attributes })
+    end
   end
 
   def users_attributes=(attributes)
