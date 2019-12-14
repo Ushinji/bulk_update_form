@@ -12,6 +12,8 @@ class Users::BulkUpdatesController < ApplicationController
 
   def update
     @form = UserBulkUpdateForm.new(form_params)
+    return render "users/bulk_updates/index" if params[:back]
+
     @form.save!
     redirect_to users_path, notice: "Updating users is success!"
   end
