@@ -10,7 +10,7 @@ class UserBulkUpdateForm
 
   def save!
     User.transaction do
-      User.upsert_all(self.users.map{ |user| user.attributes })
+      User.upsert_all(self.users.map { |user| user.attributes })
     end
   end
 
