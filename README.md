@@ -10,6 +10,11 @@ This is sample application that it serves a bulk update form.
     * 5.7
 * Docker
 
+# Post
+Following post describes the implementation of this application.
+
+[【Rails】一括更新フォームの実装](https://ushinji.hatenablog.com/entry/2019/12/14/170211)
+
 # Need
 * Docker, docker-compose
 
